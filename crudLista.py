@@ -1,4 +1,5 @@
 players = ["Mats Sundin", "Peter Forsberg", "Anders Eldebrink"]
+
 while True:
     sel = input("1. Add Player  2. List all players 3. Count players 4. Exit")
     if sel == "1":
