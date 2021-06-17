@@ -1,15 +1,8 @@
-def happy_new_year(wishes = True):
-   print("Two...")
-   print("Three...")
-   print("One...")
-   if not wishes:
-       return
-   print("Happy New Year!")
+import newYearMod
 
-
-happy_new_year(True)
-happy_new_year(False)
-
+newYearMod.happy_new_year(True)
+newYearMod.happy_new_year(False)
+newYearMod.x = 999
 
 
 def introduction(first_name, last_name="Kent"):

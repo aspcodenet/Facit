@@ -2,14 +2,18 @@
 # kontonummer - saldo
 
 accounts = {} # dictionary
-#allaBarn = ["Fanny", "Josefine"]
-#allAccounts = [] # SEB 20 000 000
 
-while True:
+def RitaHuvudMeny():
     print("1. Add account")
     print("2. Withdraw amount")
     print("3. Deposit amount")
     print("4. Lista alla")
+
+#allaBarn = ["Fanny", "Josefine"]
+#allAccounts = [] # SEB 20 000 000
+
+while True:
+    RitaHuvudMeny()
     sel = input()
     if sel == "1":
         kontonummer = input("Vilket kontonummer")
