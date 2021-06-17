@@ -37,7 +37,7 @@ def salary():
     #return render_template('nameage.html', form=form, message=message)    
     return render_template("salary.html", form=form, message=message)
 
-
+   
 
 @app.route("/hej.html")
 def hej():
