@@ -55,14 +55,62 @@
   
       <div class="container">
   
-        <form class="form-signin">
+        <form class="form-signin" method="POST" >
+          {{ form.hidden_tag() }}
           <h2 class="form-signin-heading">Lönekalkylatorn</h2>
-          <input type="text" class="input-block-level" placeholder="Namn">
-          <input type="number" class="input-block-level" placeholder="Antal timmar">
-          <input type="number" class="input-block-level" placeholder="Timlön">
-          <button class="btn btn-large btn-primary" type="submit">Beräkna</button>
+
+          <fieldset class="form-field">
+            {{ form.name.label }}
+            {{ form.name(size=20) }}
+
+            {% if form.name.errors %}
+            <ul class="errors">
+              {% for error in form.name.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+        </fieldset>
+
+        <fieldset class="form-field">
+            {{ form.hoursWorked.label }}
+            {{ form.hoursWorked }}
+
+
+            {% if form.hoursWorked.errors %}
+            <ul class="errors">
+              {% for error in form.hoursWorked.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+        </fieldset>
+
+
+        <fieldset class="form-field">
+            {{ form.hourlySalary.label }}
+            {{ form.hourlySalary }}
+
+
+            {% if form.hourlySalary.errors %}
+            <ul class="errors">
+              {% for error in form.hourlySalary.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+        </fieldset>
+
+
+
+        {{ form.submit }}
+
+
         </form>
   
+        {{ message  }}
+
       </div> <!-- /container -->
 </body>
 </html>
