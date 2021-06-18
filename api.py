@@ -14,6 +14,7 @@ class Bil(db.Model):
     namn = db.Column(db.String(80), unique=False, nullable=False)
     modell = db.Column(db.String(20), unique=False, nullable=False)
     year = db.Column(db.Integer, unique=False, nullable=False)
+    color = db.Column(db.String(10), unique=False, nullable=False)
 
 db.create_all()
 
