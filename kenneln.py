@@ -7,14 +7,6 @@ class Dog: # RITNING
         self.age = age
         self.vikt = vikt
 
-    def serialize(self):
-        return {
-            'name': self.name,
-            'ras': self.ras,
-            'age': self.age,
-            'vikt': self.vikt
-        }    
-
 
 
 def PrintMenu():
@@ -36,15 +28,18 @@ def CreateNewDog():
 def LoadFromFile():
     try:
         with open('kenneln.json','r') as f:
+            ret = []
             data = json.load(f)
-            return data
+            for  dic in data:
+                ret.append(Dog(**dic))                    
+            return ret
     except:            
         print("Filen finns ej")
         return []
 
 def SaveToFile(kennelLista):
     with open('kenneln.json', 'w') as json_file:
-        json.dump([b.serialize() for b in kennelLista], json_file)
+        json.dump([b.__dict__ for b in kennelLista], json_file)
 
 
 #Meningen med kennel = [] med Dogs
