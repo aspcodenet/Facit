@@ -16,12 +16,31 @@ def PrintMenu():
     print("4. Uppdatera")
     print("5. Ta bort")
 
+
+def GetFloatInput(prompt):
+    while True:
+        try:
+            return float(input(prompt))
+        except:
+            print("Mata in ett decimaltal tack!")            
+
+
+def GetIntInput(prompt,min=0,max=100):
+    while True:
+        try:
+            tal = int(input(prompt))
+            if tal >= min and tal <= max:
+                return tal
+            print(f"Tal mellan {min} och {max}")                    
+        except:
+            print("Mata in ett heltal tack!")            
+
 def CreateNewDog():
     print("SKAPA NY HUND")
     namn = input("Namn:")
-    age = int(input("Ålder:"))
+    age = GetIntInput("Ålder:",0,100)
     ras = input("Ras:")
-    vikt = float(input("Vikt i kg:"))
+    vikt = GetFloatInput("Vikt i kg:")
     d = Dog(namn,age,vikt,ras)
     return d
 
