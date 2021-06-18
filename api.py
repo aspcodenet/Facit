@@ -25,11 +25,24 @@ class Bil(db.Model):
 
 
 
+@app.route('/api/bil', methods=['POST'])
+def createNew():
+    dc = json.loads(request.data)
+    aa = Bil(**dc)
+    db.session.add(aa)                       
+    db.session.commit()
+    return "Created"
+
+
 @app.route('/api/bil', methods=['GET'])
 def listaAlla():
     q = Bil.query.all()
     return jsonify([b.serialize() for b in q])
 
+@app.route('/api/bil/<int:id>', methods=['GET'])
+def listaEnBil(id):
+    q = Bil.query.filter_by(id=id).one()
+    return jsonify(q.serialize())
 
 
 # REST API
