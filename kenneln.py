@@ -7,6 +7,15 @@ class Dog: # RITNING
         self.age = age
         self.vikt = vikt
 
+    def serialize(self):
+        return {
+            'name': self.name,
+            'ras': self.ras,
+            'age': self.age,
+            'vikt': self.vikt
+        }    
+
+
 
 def PrintMenu():
     print("1. Lista alla")
@@ -35,9 +44,10 @@ def LoadFromFile():
 
 def SaveToFile(kennelLista):
     with open('kenneln.json', 'w') as json_file:
-        json.dump(kennelLista, json_file)
+        json.dump([b.serialize() for b in kennelLista], json_file)
 
 
+#Meningen med kennel = [] med Dogs
 kennel = LoadFromFile()
 
 
