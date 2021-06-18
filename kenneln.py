@@ -42,9 +42,54 @@ def SaveToFile(kennelLista):
         json.dump([b.__dict__ for b in kennelLista], json_file)
 
 
+def UpdateDog(kennelLista):
+    print("Välj hundnummer som du vill uppdatera")
+    n = 1
+    for dog in kennel:
+        print(f"{n}:{dog.name}")
+        n = n + 1
+    dogIndex = int(input("Nr:")) - 1
+    dog = kennelLista[dogIndex]
+    print("ÄNDRA  HUND")
+    namn = input(f"Namn: {dog.name}")
+    if namn == "":
+        namn = dog.name
+    age = int(input(f"Ålder {dog.age}:"))
+    ras = input(f"Ras{dog.ras}:")
+    if ras == "":
+        ras = dog.name
+    vikt = float(input(f"Vikt i kg{dog.vikt}:"))
+    dog.name = namn
+    dog.age = age
+    dog.ras = ras
+    dog.vikt = vikt
+
+def Search(kennelLista):
+    partOfName = input("Sök efter:")
+    result = []
+    for dog in kennelLista:
+        if partOfName in dog.name:
+          result.append(dog)    
+    return result           
+
+
+def DeleteDog(kennelLista):
+    print("Välj hundnummer som du vill deleta")
+    n = 1
+    for dog in kennel:
+        print(f"{n}:{dog.name}")
+        n = n + 1
+    dogIndex = int(input("Nr:")) - 1
+    del kennelLista[dogIndex]
+
 #Meningen med kennel = [] med Dogs
 kennel = LoadFromFile()
 
+
+#1 Save ok
+#2 tagit bort serialize
+#3 Sök
+#4 Safe input - int osv
 
 while True:
     PrintMenu()
@@ -56,4 +101,15 @@ while True:
         dog = CreateNewDog()
         kennel.append(dog)
         SaveToFile(kennel)
+    if sel == "2":
+        searchResults = Search(kennel)
+        for dog in searchResults:
+            print(f"{dog.name} {dog.ras}")
+    if sel == "4":
+        UpdateDog(kennel)
+        SaveToFile(kennel)
+    if sel == "5":
+        DeleteDog(kennel)
+        SaveToFile(kennel)
+
 
