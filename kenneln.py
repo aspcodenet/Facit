@@ -15,6 +15,7 @@ def PrintMenu():
     print("3. Skapa ny")
     print("4. Uppdatera")
     print("5. Ta bort")
+    print("6. Avsluta")
 
 
 def GetFloatInput(prompt):
@@ -130,5 +131,7 @@ while True:
     if sel == "5":
         DeleteDog(kennel)
         SaveToFile(kennel)
+    if sel == "6":
+        break
 
 
