@@ -15,6 +15,11 @@ class Bil(db.Model):
     modell = db.Column(db.String(20), unique=False, nullable=False)
     year = db.Column(db.Integer, unique=False, nullable=False)
 
+    def update(self,newdata):
+        for key,value in newdata.items():
+            setattr(self,key,value)       
+
+
     def serialize(self):
         return {
             'modell': self.modell,
@@ -34,6 +39,8 @@ def createNew():
     return "Created"
 
 
+
+
 @app.route('/api/bil', methods=['GET'])
 def listaAlla():
     q = Bil.query.all()
@@ -43,6 +50,24 @@ def listaAlla():
 def listaEnBil(id):
     q = Bil.query.filter_by(id=id).one()
     return jsonify(q.serialize())
+
+
+@app.route('/api/bil/<int:id>', methods=['PUT'])
+def updateBil(id):
+    m = Bil.query.filter_by(id=id).one()
+    dc = json.loads(request.data)
+    m.update(dc)
+    db.session.commit()
+    return jsonify(m.serialize())
+
+
+
+@app.route('/api/bil/<int:id>', methods=['DELETE'])
+def delete(id):
+    m = Bil.query.filter_by(id=id).one()
+    db.session.delete(m)
+    db.session.commit()
+    return jsonify("")
 
 
 # REST API
